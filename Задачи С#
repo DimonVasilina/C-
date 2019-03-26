@@ -1,0 +1,146 @@
+using System;
+
+namespace ConsoleApp1
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			Program hw = new Program();
+			hw.Decart();
+			hw.Day_number();
+			hw.Your_bals();
+			hw.TaskMass_2();
+			hw.TaskMass_3();
+			hw.TaskMass_4();
+		}
+		void Decart()
+		{
+			int x;
+			Console.WriteLine("Введите координаты Х, отличающуюся от 0:");
+			x = Convert.ToInt32(Console.ReadLine());
+			int y;
+			Console.WriteLine("Введите координаты Y, отличающуюся от 0:");
+			y = Convert.ToInt32(Console.ReadLine());
+			if (x > 0 && y > 0)
+
+				Console.WriteLine("Четверть № 1");
+			else if (x <= -0.1 && y >= 0.1)
+				Console.WriteLine("Четверть № 2");
+			else if (x <= -0.1 && y <= -0.1)
+				Console.WriteLine("Четверть № 3");
+			else if (x >= 0.1 && y <= -0.1)
+				Console.WriteLine("Четверть № 4");
+
+			Console.ReadKey();
+		}
+
+		void Your_bals()
+		{
+			int x;
+			Console.WriteLine("Введите количество балов от 0 до 100: ");
+			x = Convert.ToInt32(Console.ReadLine());
+			if (x <= -1 || x >= 101)
+				Console.WriteLine("Введите бал от 0 до 100");
+			
+				else if (x >= 0 && x <= 19)
+					Console.WriteLine("Оценка F");
+				else if (x >= 20 && x <= 39)
+					Console.WriteLine("Оценка E");
+				else if (x >= 40 && x <= 59)
+					Console.WriteLine("Оценка D");
+				else if (x >= 60 && x <= 74)
+					Console.WriteLine("Оценка C");
+				else if (x >= 75 && x <= 89)
+					Console.WriteLine("Оценка B");
+				else if (x >= 90 && x <= 100)
+					Console.WriteLine("Оценка A");
+			
+			 
+			Console.ReadKey();
+		}
+
+
+		void Day_number()
+		{
+			int x;
+			Console.WriteLine("Введите номер дня недели");
+			x = Convert.ToInt32(Console.ReadLine());
+
+			if (x == 1)
+				Console.WriteLine("Понедельник");
+			else if (x == 2)
+				Console.WriteLine("вторник");
+			else if (x == 3)
+				Console.WriteLine("среда");
+			else if (x == 4)
+				Console.WriteLine("четверг");
+			else if (x == 5)
+				Console.WriteLine("пятница");
+			else if (x == 6)
+				Console.WriteLine("Суббота");
+			else if (x == 7)
+				Console.WriteLine("Воскресение");
+			else if (x < 1 || x >= 8)
+
+				Console.WriteLine("Введите значение от 1 до 7");
+			Console.ReadKey();
+		}
+
+		void TaskMass_2()
+		{
+
+			int[] mass = new int[5] { 2, 4, 7, -20, -30 };
+			int min = mass[0];
+			for (int i = 0; i < mass.Length; i++)
+			{
+				if (mass[i] < min)
+					min = mass[i];
+			}
+			Console.WriteLine($"min = { min}");
+			Console.ReadKey();
+		}
+
+		void TaskMass_3()
+		{
+
+			int[] mass = new int[5] { 2, 4, 7, -20, -30 };
+			int max = mass[0];
+			for (int i = 0; i < mass.Length; i++)
+			{
+				if (mass[i] > max)
+					max = mass[i];
+			}
+			Console.WriteLine($"max = { max}");
+			Console.ReadKey();
+		}
+		void TaskMass_4()
+		{
+			int[] mass = new int[5] { 2, 4, 7, -20, -30 };
+			int min = mass[0];
+			int max = mass[0];
+			int indexI = 0;
+			int indexZ = 0;
+			for (int z = 0; z < mass.Length; z++)
+			{
+				if (mass[z] < min)
+				{
+					min = mass[z];
+					indexZ = z;
+				}
+			}
+			for (int i = 0; i < mass.Length; i++)
+			{
+				if (mass[i] > max)
+				{
+					max = mass[i];
+					indexI = i;
+				}
+			}
+			Console.WriteLine($"min = {min}, индекс - {indexZ}");
+			Console.WriteLine($"max = {max}, индекс - {indexI}");
+
+			Console.ReadKey();
+		}
+	}
+}

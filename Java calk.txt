@@ -1,0 +1,234 @@
+package com.deveducation.febr2019.sukovach;
+import  java.util.Scanner;
+
+public class Core implements Calculable {
+
+    private double result;
+
+    public void calculate() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input first Number: ");
+        double firstNumber = scanner.nextDouble();
+
+        System.out.println("Input operator: ");
+        char operator = scanner.next().trim().charAt(0);
+        System.out.println("Input second Number: ");
+        double secondNumber = scanner.nextDouble();
+
+        switch (operator) {
+            case '+':
+                addition(firstNumber, secondNumber);
+                break;
+            case '-':
+                //                subtraction(firstNumber, secondNumber);
+                break;
+            case '*':
+                multiplication(firstNumber, secondNumber);
+                break;
+            case '/':
+                division(firstNumber, secondNumber);
+                break;
+            default:
+                System.out.println("Illegal operator");
+        }
+        System.out.println("RESULT: " + firstNumber + " " + operator + " " + secondNumber + "  = " + result);
+    }
+
+    public double addition(double a, double b) {
+        result = a + b;
+        return result;
+    }
+
+    public double subtraction(double a, double b) {
+        result = a - b;
+        return result;
+    }
+
+    public double multiplication(double a, double b) {
+        result = a * b;
+        return result;
+    }
+
+    public double division(double a, double b) {
+        try {
+            if (b == 0) throw new ArithmeticException();
+            result = a / b;
+        } catch (ArithmeticException e) {
+            System.out.println("Forbidden operation. Division by zero!");
+            System.exit(0);
+        }
+        return result;
+    }
+
+    public double sqrt(double a) {
+        try {
+            if (a <= 0) throw new ArithmeticException();
+        } catch (ArithmeticException e) {
+            System.out.println("Forbidden operation. Division by zero!");
+            System.exit(0);
+            break;
+        }
+
+     }
+        double t;
+        double squareRoot = a / 2;
+        do {
+            t = squareRoot;
+            squareRoot = (t + (a / t)) / 2;
+        } while ((t - squareRoot) != 0);
+        return squareRoot;
+    }
+     return result;
+    }
+
+
+    public double reverse(double a){
+        return a*(-1);
+    }
+
+}
+
+///
+
+package com.deveducation.febr2019.sukovach;
+import org.junit.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class CalcTest
+    {
+
+    public Core core;
+
+    @Test
+    public void testAddition_001()
+    {
+        double a = 0.012;
+        double b = 0.00012;
+        double expectedResult = 0.01212;
+        double testResult = new Core().addition(a, b);
+        Assert.assertEquals(expectedResult, testResult, 0);
+    }
+    @Test
+    public void testPlus_two_numbers() {
+        double a = 1.2;
+        double b = 1.8;
+        double result = 3.0;
+        double factResult = new Core().addition( a , b); // 3.0
+        Assert.assertEquals (result , factResult , 0 );
+    }
+
+    @Test
+    public void testPlus_0()
+    {
+        double a = 1.2;
+        double b = 0;
+        double result = 1.2;
+        double factResult = new Core().addition( a , b);
+        Assert.assertEquals (result , factResult , 0 );
+    }
+        @Test
+        public void testPlus_04() {
+            double a = -1.2;
+            double b = -1.8;
+            double result = -3;
+            double factResult = new Core().addition( a , b);
+            Assert.assertEquals (result , factResult , 0 );
+        }
+        @Test
+        public void testPlus_05() {
+            double a = 1.8;
+            double b = -1.8;
+            double result = -0;
+            double factResult = new Core().addition( a , b);
+            Assert.assertEquals (result , factResult , 0 );
+        }
+        @Test
+        public void testPlus_06() {
+            double a = -0;
+            double b = -1;
+            double result = 0;
+            double factResult = new Core().addition( a , b);
+            Assert.assertEquals (result , factResult , 0 );
+        }
+
+    @Test
+    public void testDevision_1()
+    {
+        double a = 1.2;
+        double b = 0;
+        Object result = new ArithmeticException();
+        Object fact = new Core().division(a , b);
+        Assert.assertEquals( result , fact );
+    }
+
+    @Test
+    public void testDevision_2()
+    {
+        double a = 1;
+        double b = 2;
+        Object result = new ArithmeticException();
+        Object fact = new Core().division(a , b);
+        Assert.assertEquals( 0.5 , fact );
+    }
+        @Test
+        public void testDevision_3()
+        {
+            double a = 0;
+            double b = 1;
+            Object result = new ArithmeticException();
+            Object fact = new Core().division(a , b);
+            Assert.assertEquals( 0.0 , fact );
+        }
+        @Test
+        public void testDevision_4()
+        {
+            double a = -15;
+            double b = 15;
+            Object result = new ArithmeticException();
+            Object fact = new Core().division(a , b);
+            Assert.assertEquals( -1.0 , fact );
+        }
+        @Test
+        public void testDevision_5()
+        {
+            double a = -1;
+            double b = -10;
+            Object result = new ArithmeticException();
+            Object fact = new Core().division(a , b);
+            Assert.assertEquals( 0.10 , fact );
+        }
+        @Test
+        public void testDevision_6()
+        {
+            double a = 10;
+            double b = 3;
+            Object result = new ArithmeticException();
+            Object fact = new Core().division(a , b);
+            Assert.assertEquals(  3.3333333333333335 , fact );
+        }
+    @Test
+    public void test_squart_root()
+    {
+    double a = 16;
+        double fact = (double) new Core().sqrt(a);
+        Assert.assertEquals( 4 , fact, 0 );
+    }
+        @Test
+        public void test_squart_root_2()
+        {
+            double t = 0;
+            double fact = (double) new Core().sqrt(t;
+            Assert.assertEquals( 0 , fact, 0 );
+        }
+    @Test
+    public void testReverse(){
+            double a = 5;
+            double result = -5;
+            double fact = new Core().reverse(a);
+            Assert.assertEquals(result, fact, 0);
+    }
+
+}
+
